@@ -1,0 +1,13 @@
+{
+    "name": "kipl/feip-test",
+    "description": "Тестовое задание",
+    "type": "project",
+    "license": "none",
+    "authors": [
+        {
+            "name": "Kirill Platonov",
+            "email": "twincot@gmail.com"
+        }
+    ],
+    "require": {}
+}
