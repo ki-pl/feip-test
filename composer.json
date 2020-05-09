@@ -9,5 +9,11 @@
             "email": "twincot@gmail.com"
         }
     ],
-    "require": {}
+    "autoload": {
+        "psr-4": {"Feip\\": "src/"}
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.1"
+    }
 }
