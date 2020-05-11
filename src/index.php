@@ -43,7 +43,7 @@ $rules = [
     $Sanitizer = new Sanitizer($data,$rules,array('custom','custom[]'));
     
     print_r('<pre>');
-    print_r($Sanitizer->sanitize());
+    print_r(json_decode($Sanitizer->sanitize(),1));
     print_r(json_decode($Sanitizer->getError(),1));
     print_r('</pre>');
     

@@ -81,7 +81,7 @@ class SanitizerTest extends TestCase
         ];
 
         $Sanitizer = new Sanitizer($data,$rules);
-        $data = $Sanitizer->sanitize();
+        $data = json_decode($Sanitizer->sanitize(),1);
         
         $this->assertSame(123, $data['foo']);
         $this->assertSame(123, $data['bar']);
@@ -101,7 +101,7 @@ class SanitizerTest extends TestCase
         ];
 
         $Sanitizer = new Sanitizer($data,$rules);
-        $Sanitizer->sanitize();
+        $data = json_decode($Sanitizer->sanitize(),1);
         $error = json_decode($Sanitizer->getError(),1);
         $this->assertSame('root > foo > 123.1a : unexpected data type. Must be Float', $error[0]);
         $this->assertSame('root > bar > 123,0 : unexpected data type. Must be Float', $error[1]);
@@ -124,11 +124,11 @@ class SanitizerTest extends TestCase
         ];
 
         $Sanitizer = new Sanitizer($data,$rules);
-        $data = $Sanitizer->sanitize();
+        $data = json_decode($Sanitizer->sanitize(),1);
         
         $this->assertSame(123.1, $data['foo']);
         $this->assertSame(123.1, $data['bar']);
-        $this->assertSame(10000000.0, $data['baz']);
+        $this->assertSame(10000000, $data['baz']);
         $this->assertSame(0.42, $data['zap']);
     }
  
@@ -147,7 +147,7 @@ class SanitizerTest extends TestCase
         ];
 
         $Sanitizer = new Sanitizer($data,$rules);
-        $Sanitizer->sanitize();
+        $data = json_decode($Sanitizer->sanitize(),1);
         $error = json_decode($Sanitizer->getError(),1);
         $this->assertSame('root > foo > 260557 : unexpected data type. Must be Phone', $error[0]);
         $this->assertSame('root > bar > 260557 : unexpected data type. Must be Phone', $error[1]);
@@ -169,7 +169,7 @@ class SanitizerTest extends TestCase
         ];
 
         $Sanitizer = new Sanitizer($data,$rules);
-        $data = $Sanitizer->sanitize();
+        $data = json_decode($Sanitizer->sanitize(),1);
         
         $this->assertSame(79502885623, $data['foo']);
         $this->assertSame(79502885623, $data['bar']);
@@ -192,7 +192,7 @@ class SanitizerTest extends TestCase
         $customRule = array('custom','custom[]');
 
         $Sanitizer = new Sanitizer($data,$rules,$customRule);
-        $data = $Sanitizer->sanitize();
+        $data = json_decode($Sanitizer->sanitize(),1);
         
         $this->assertSame('123qaz', $data['foo']);
         $this->assertSame(array('123qaz'), $data['bar']);
@@ -211,7 +211,7 @@ class SanitizerTest extends TestCase
         ];
 
         $Sanitizer = new Sanitizer($data,$rules);
-        $data = $Sanitizer->sanitize();
+        $data = json_decode($Sanitizer->sanitize(),1);
     }
     public function testArrayNotValue()
     {
@@ -224,7 +224,7 @@ class SanitizerTest extends TestCase
             'foo' => 'int',
         ];
         $Sanitizer = new Sanitizer($data,$rules);
-        $data = $Sanitizer->sanitize();
+        $data = json_decode($Sanitizer->sanitize(),1);
         
     }
 
@@ -255,7 +255,7 @@ class SanitizerTest extends TestCase
     ];
 
         $Sanitizer = new Sanitizer($data,$rules);
-        $data = $Sanitizer->sanitize();
+        $data = json_decode($Sanitizer->sanitize(),1);
         $this->assertSame(true, is_array($data['foo']['foo']));
         
     }

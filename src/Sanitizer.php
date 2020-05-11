@@ -67,12 +67,12 @@ class Sanitizer
     /**
      *  Start Sanitizer
      *
-     *  @return array 
+     *  @return json 
      */
 
 	public function sanitize()
     {
-        return $this->sanitizeData($this->data,$this->rules);
+        return json_encode($this->sanitizeData($this->data,$this->rules),JSON_UNESCAPED_UNICODE,JSON_NUMERIC_CHECK);
     }
 
 	/**
